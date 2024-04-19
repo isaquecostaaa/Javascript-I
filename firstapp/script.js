@@ -1,7 +1,11 @@
+//input
 anoNascimento = 2003
+nome = "Isaque"
 
-idade = 2024 - anoNascimento
+//Processamento
+hoje = new Date()
+anoAtual = hoje.getFullYear()
+idade = anoAtual - anoNascimento
+mensagem = ("Eu sou " + nome + " e tenho " + idade + " anos ")
 
-nome = "isaque"
-
-alert("Meu nome é " + nome + " e tenho " + idade + " anos ")
+alert(mensagem)
