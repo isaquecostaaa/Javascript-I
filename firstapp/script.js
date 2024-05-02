@@ -1,32 +1,43 @@
-//constantes
 
-const SALARIO_ATE_20 = 1000
-const SALARIO_ACIMA_20 = 2000
-const IDADE_LIMITE = 20
+function calcularIdade(O_ANO_NASCIMENTO) {
+    const HOJE = new Date()
+    const ANO_ATUAL = HOJE.getFullYear()
+    const IDADE = ANO_ATUAL - O_ANO_NASCIMENTO
 
-//input
+    return IDADE
+}
 
-const ANO_NASCIMENTO = parseInt(prompt("Informe o seu ano de nascimento"))
-const NOME = prompt("Informe o seu nome")
-const SALARIO_BASE = parseFloat(prompt("Informe seu salário base"))
-const GRATIFICACAO = parseFloat(prompt("Informe o valor da sua gratificação"))
-const BONUS = parseFloat(prompt("Informe o valor do seu bônus"))
-const DESCONTO = parseFloat(prompt("Informe o valor do seu desconto"))
+function calcularAdicional(A_IDADE) {
+    const SALARIO_ATE_20 = 1000
+    const SALARIO_ACIMA_20 = 2000
+    const IDADE_LIMITE = 20
+    let adicional = SALARIO_ACIMA_20
+    if (A_IDADE <= IDADE_LIMITE) {
+        adicional = SALARIO_ATE_20
+    }
 
+    return adicional
+}
+function impressao(){
 
-//Processamento
+    //input
 
-const HOJE = new Date()
-const ANO_ATUAL = HOJE.getFullYear()
-const IDADE = ANO_ATUAL - ANO_NASCIMENTO
+    const ANO_NASCIMENTO = parseInt(document.getElementById("anoNascimento").value)
+    const NOME = document.getElementById("nome").value
+    const SALARIO_BASE = parseFloat(document.getElementById("salarioBase").value)
+    const GRATIFICACAO = parseFloat(document.getElementById("gratificacao").value)
+    const BONUS = parseFloat(document.getElementById("bonus").value)
+    const DESCONTO = parseFloat(document.getElementById("desconto").value)
 
-let adicional = SALARIO_ACIMA_20
-if (IDADE <= IDADE_LIMITE) {
-adicional = SALARIO_ATE_20 }
+    //Processamento
 
-let salarioLiquido = SALARIO_BASE + GRATIFICACAO + BONUS - DESCONTO + adicional
+    const IDADE = calcularIdade(ANO_NASCIMENTO)
 
+    let adicional = calcularAdicional(IDADE)
 
-//output
-let mensagem = ("Eu sou " + NOME + ", tenho " + IDADE + " anos e recebo R$" + salarioLiquido)
-alert(mensagem)
+    let salarioLiquido = SALARIO_BASE + GRATIFICACAO + BONUS - DESCONTO + adicional
+
+    //output
+    let mensagem = ("Eu sou " + NOME + ", tenho " + IDADE + " anos e recebo R$" + salarioLiquido)
+    document.getElementById("text-box").innerHTML = mensagem
+}
